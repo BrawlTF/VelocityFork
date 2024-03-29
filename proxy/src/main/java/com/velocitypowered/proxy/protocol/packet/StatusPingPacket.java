@@ -43,6 +43,10 @@ public class StatusPingPacket implements MinecraftPacket {
     return handler.handle(this);
   }
 
+  public long getRandomId() {
+    return randomId;
+  }
+
   @Override
   public int expectedMaxLength(ByteBuf buf, Direction direction, ProtocolVersion version) {
     return 8;

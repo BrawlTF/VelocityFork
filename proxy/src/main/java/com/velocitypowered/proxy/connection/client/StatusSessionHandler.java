@@ -17,6 +17,7 @@
 
 package com.velocitypowered.proxy.connection.client;
 
+import com.velocitypowered.api.event.connection.StatusPingEvent;
 import com.velocitypowered.api.event.proxy.ProxyPingEvent;
 import com.velocitypowered.proxy.VelocityServer;
 import com.velocitypowered.proxy.connection.MinecraftConnection;
@@ -80,6 +81,9 @@ public class StatusSessionHandler implements MinecraftSessionHandler {
 
   @Override
   public boolean handle(StatusPingPacket packet) {
+
+    server.getEventManager().fire(new StatusPingEvent(packet.getRandomId()));
+
     connection.closeWith(packet);
     return true;
   }
